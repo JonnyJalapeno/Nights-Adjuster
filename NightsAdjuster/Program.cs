@@ -24,78 +24,83 @@ namespace NightsAdjuster
             var SunlightNight = configOptions.Value.sunlight; //overall brightness modifier, higher is brighter
             var DALCNight = configOptions.Value.dalc; //direct lighting modifier, higher is brighter
 
-            foreach (var weather in state.LoadOrder.PriorityOrder.Weather().WinningOverrides()) {
+            foreach (var weather in state.LoadOrder.PriorityOrder.Weather().WinningOverrides())
+            {
 
-                var stat = state.PatchMod.Weathers.GetOrAddAsOverride(weather);
-
-                //ambient
-                int colA = weather.AmbientColor.Night.A;
-                int colR = (int)Math.Min(weather.AmbientColor.Night.R * AmbientNight, 255);
-                int colG = (int)Math.Min(weather.AmbientColor.Night.G * AmbientNight, 255);
-                int colB = (int)Math.Min(weather.AmbientColor.Night.B * AmbientNight, 255);
-                Color ambCol = Color.FromArgb(colA,colR, colG, colB);
-                stat.AmbientColor.Night = ambCol;
-
-                //sunlight 
-                colA = weather.SunlightColor.Night.A;
-                colR = (int)Math.Min(weather.SunlightColor.Night.R * SunlightNight, 255);
-                colG = (int)Math.Min(weather.SunlightColor.Night.G * SunlightNight, 255);
-                colB = (int)Math.Min(weather.SunlightColor.Night.B * SunlightNight, 255);
-                Color sunCol = Color.FromArgb(colA, colR, colG, colB);
-                stat.SunlightColor.Night = sunCol;
-
-
-                if (stat.DirectionalAmbientLightingColors != null && weather.DirectionalAmbientLightingColors != null)
+                if (weather != null && weather.EditorID!=null && !weather.EditorID.Contains("Map"))
                 {
+                    var stat = state.PatchMod.Weathers.GetOrAddAsOverride(weather);
 
-                    //X +
-                    colA = weather.DirectionalAmbientLightingColors.Night.DirectionalXPlus.A;
-                    colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXPlus.R * DALCNight, 255);
-                    colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXPlus.G * DALCNight, 255);
-                    colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXPlus.B * DALCNight, 255);
-                    Color dalcXPlusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalXPlus = dalcXPlusCol;
 
-                    //X-
-                    colA = weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.A;
-                    colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.R * DALCNight, 255);
-                    colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.G * DALCNight, 255);
-                    colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.B * DALCNight, 255);
-                    Color dalcXMinusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalXMinus = dalcXMinusCol;
+                    //ambient
+                    int colA = weather.AmbientColor.Night.A;
+                    int colR = (int)Math.Min(weather.AmbientColor.Night.R * AmbientNight, 255);
+                    int colG = (int)Math.Min(weather.AmbientColor.Night.G * AmbientNight, 255);
+                    int colB = (int)Math.Min(weather.AmbientColor.Night.B * AmbientNight, 255);
+                    Color ambCol = Color.FromArgb(colA, colR, colG, colB);
+                    stat.AmbientColor.Night = ambCol;
 
-                    //Y+
-                    colA = weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.A;
-                    colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.R * DALCNight, 255);
-                    colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.G * DALCNight, 255);
-                    colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.B * DALCNight, 255);
-                    Color dalcYPlusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalYPlus = dalcYPlusCol;
+                    //sunlight 
+                    colA = weather.SunlightColor.Night.A;
+                    colR = (int)Math.Min(weather.SunlightColor.Night.R * SunlightNight, 255);
+                    colG = (int)Math.Min(weather.SunlightColor.Night.G * SunlightNight, 255);
+                    colB = (int)Math.Min(weather.SunlightColor.Night.B * SunlightNight, 255);
+                    Color sunCol = Color.FromArgb(colA, colR, colG, colB);
+                    stat.SunlightColor.Night = sunCol;
 
-                    //Y-
-                    colA = weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.A;
-                    colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.R * DALCNight, 255);
-                    colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.G * DALCNight, 255);
-                    colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.B * DALCNight, 255);
-                    Color dalcYMinusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalYMinus = dalcYMinusCol;
 
-                    //Z+
-                    colA = weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.A;
-                    colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.R * DALCNight, 255);
-                    colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.G * DALCNight, 255);
-                    colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.B * DALCNight, 255);
-                    Color dalcZPlusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalZPlus = dalcZPlusCol;
+                    if (stat.DirectionalAmbientLightingColors != null && weather.DirectionalAmbientLightingColors != null)
+                    {
 
-                    //Z-
-                    colA = weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.A;
-                    colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.R * DALCNight, 255);
-                    colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.G * DALCNight, 255);
-                    colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.B * DALCNight, 255);
-                    Color dalcZMinusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalZMinus = dalcZMinusCol;
+                        //X +
+                        colA = weather.DirectionalAmbientLightingColors.Night.DirectionalXPlus.A;
+                        colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXPlus.R * DALCNight, 255);
+                        colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXPlus.G * DALCNight, 255);
+                        colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXPlus.B * DALCNight, 255);
+                        Color dalcXPlusCol = Color.FromArgb(colA, colR, colG, colB);
+                        stat.DirectionalAmbientLightingColors.Night.DirectionalXPlus = dalcXPlusCol;
 
+                        //X-
+                        colA = weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.A;
+                        colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.R * DALCNight, 255);
+                        colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.G * DALCNight, 255);
+                        colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.B * DALCNight, 255);
+                        Color dalcXMinusCol = Color.FromArgb(colA, colR, colG, colB);
+                        stat.DirectionalAmbientLightingColors.Night.DirectionalXMinus = dalcXMinusCol;
+
+                        //Y+
+                        colA = weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.A;
+                        colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.R * DALCNight, 255);
+                        colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.G * DALCNight, 255);
+                        colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.B * DALCNight, 255);
+                        Color dalcYPlusCol = Color.FromArgb(colA, colR, colG, colB);
+                        stat.DirectionalAmbientLightingColors.Night.DirectionalYPlus = dalcYPlusCol;
+
+                        //Y-
+                        colA = weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.A;
+                        colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.R * DALCNight, 255);
+                        colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.G * DALCNight, 255);
+                        colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.B * DALCNight, 255);
+                        Color dalcYMinusCol = Color.FromArgb(colA, colR, colG, colB);
+                        stat.DirectionalAmbientLightingColors.Night.DirectionalYMinus = dalcYMinusCol;
+
+                        //Z+
+                        colA = weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.A;
+                        colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.R * DALCNight, 255);
+                        colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.G * DALCNight, 255);
+                        colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.B * DALCNight, 255);
+                        Color dalcZPlusCol = Color.FromArgb(colA, colR, colG, colB);
+                        stat.DirectionalAmbientLightingColors.Night.DirectionalZPlus = dalcZPlusCol;
+
+                        //Z-
+                        colA = weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.A;
+                        colR = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.R * DALCNight, 255);
+                        colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.G * DALCNight, 255);
+                        colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.B * DALCNight, 255);
+                        Color dalcZMinusCol = Color.FromArgb(colA, colR, colG, colB);
+                        stat.DirectionalAmbientLightingColors.Night.DirectionalZMinus = dalcZMinusCol;
+
+                    }
                 }
             }
         }
