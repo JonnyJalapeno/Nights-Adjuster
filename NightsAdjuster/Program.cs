@@ -62,7 +62,7 @@ namespace NightsAdjuster
                     colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.G * DALCNight, 255);
                     colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalXMinus.B * DALCNight, 255);
                     Color dalcXMinusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalXPlus = dalcXMinusCol;
+                    stat.DirectionalAmbientLightingColors.Night.DirectionalXMinus = dalcXMinusCol;
 
                     //Y+
                     colA = weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.A;
@@ -70,7 +70,7 @@ namespace NightsAdjuster
                     colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.G * DALCNight, 255);
                     colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYPlus.B * DALCNight, 255);
                     Color dalcYPlusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalXPlus = dalcYPlusCol;
+                    stat.DirectionalAmbientLightingColors.Night.DirectionalYPlus = dalcYPlusCol;
 
                     //Y-
                     colA = weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.A;
@@ -78,7 +78,7 @@ namespace NightsAdjuster
                     colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.G * DALCNight, 255);
                     colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalYMinus.B * DALCNight, 255);
                     Color dalcYMinusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalXPlus = dalcYMinusCol;
+                    stat.DirectionalAmbientLightingColors.Night.DirectionalYMinus = dalcYMinusCol;
 
                     //Z+
                     colA = weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.A;
@@ -86,7 +86,7 @@ namespace NightsAdjuster
                     colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.G * DALCNight, 255);
                     colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZPlus.B * DALCNight, 255);
                     Color dalcZPlusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalXPlus = dalcZPlusCol;
+                    stat.DirectionalAmbientLightingColors.Night.DirectionalZPlus = dalcZPlusCol;
 
                     //Z-
                     colA = weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.A;
@@ -94,7 +94,7 @@ namespace NightsAdjuster
                     colG = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.G * DALCNight, 255);
                     colB = (int)Math.Min(weather.DirectionalAmbientLightingColors.Night.DirectionalZMinus.B * DALCNight, 255);
                     Color dalcZMinusCol = Color.FromArgb(colA, colR, colG, colB);
-                    stat.DirectionalAmbientLightingColors.Night.DirectionalXPlus = dalcZMinusCol;
+                    stat.DirectionalAmbientLightingColors.Night.DirectionalZMinus = dalcZMinusCol;
 
                 }
             }
