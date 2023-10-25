@@ -27,10 +27,6 @@ namespace NightsAdjuster
             foreach (var weather in state.LoadOrder.PriorityOrder.Weather().WinningOverrides()) {
 
                 var stat = state.PatchMod.Weathers.GetOrAddAsOverride(weather);
-                /*int test1 = weather.AmbientColor.Night.A;
-                int test2 = weather.AmbientColor.Night.R;
-                int test3 = weather.AmbientColor.Night.G;
-                int test4 = weather.AmbientColor.Night.B;*/
 
                 //ambient
                 int colA = weather.AmbientColor.Night.A;
@@ -49,19 +45,8 @@ namespace NightsAdjuster
                 stat.SunlightColor.Night = sunCol;
 
 
-                /*Color dalcXPlusCol;
-                Color dalcXMinusCol;
-                Color dalcYPlusCol;
-                Color dalcYMinusCol;
-                Color dalcZPlusCol;
-                Color dalcZMinusCol;*/
-                //bool check = false;
-
-
-
                 if (stat.DirectionalAmbientLightingColors != null && weather.DirectionalAmbientLightingColors != null)
                 {
-                    //check = true;
 
                     //X +
                     colA = weather.DirectionalAmbientLightingColors.Night.DirectionalXPlus.A;
