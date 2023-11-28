@@ -1,0 +1,14 @@
+{
+  "Nickname": "Nights Adjuster",
+  "Visibility": "Visible",
+  "OneLineDescription": "Weather night adjustment patcher",
+  "LongDescription": "",
+  "PreferredAutoVersioning": "Default",
+  "RequiredMods": [],
+  "TargetedReleases": [
+    "SkyrimLE",
+    "SkyrimSE",
+    "SkyrimVR",
+    "SkyrimSEGog"
+  ]
+}
